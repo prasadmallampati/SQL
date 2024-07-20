@@ -7,6 +7,7 @@ CREATE: Create new database objects (e.g., tables).
 ALTER: Modify existing objects 
 DROP: Delete objects 
 TRUNCATE: Remove all records from a table while keeping its structure.
+
 -----------------------------------------------------------------------------
 2.Data Manipulation Language (DML): Manage your data.
 
