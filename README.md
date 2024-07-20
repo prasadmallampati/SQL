@@ -22,6 +22,7 @@ INSERT: Add new records
 UPDATE: Modify existing data
 
 DELETE: Remove data
+
 ---------------------------------------------------------------------------
 
 3.Data Control Language (DCL): Manage user permissions.
