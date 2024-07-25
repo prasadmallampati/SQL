@@ -1,0 +1,139 @@
+/*
+
+
+
+MySQL supports several types of joins to combine records from two or more tables based on related columns. Here are the main types:
+
+INNER JOIN
+LEFT JOIN (LEFT OUTER JOIN)
+RIGHT JOIN (RIGHT OUTER JOIN)
+FULL JOIN (FULL OUTER JOIN)
+note : not supports mysql
+CROSS JOIN
+SELF JOIN
+*/
+
+/*
+################### INNER JOIN  #################################
+definition :-
+			The INNER JOIN keyword selects records that have matching values in both tables.
+
+Syntax:
+			SELECT columns
+			FROM table1
+			INNER JOIN table2
+			ON table1.column = table2.column;
+*/
+SELECT table_a.id, table_a.name
+FROM table_a
+INNER JOIN table_b
+ON table_a.id = table_b.id;
+
+
+/*
+##################      LEFT JOIN     #########################
+definition :- The LEFT JOIN keyword returns all records from the left table (table1),
+			 and the matched records from the right table (table2). 
+			 The result is NULL from the right side if there is no match.
+
+
+# syntax
+			SELECT columns
+			FROM TABLE_1 
+			LEFT JOIN TABLE_2
+			ON TABLE_1.COLUMNS=TABLE_2.COLUMNS;
+
+*/
+
+
+ # example 
+ 
+SELECT  table_a.id,table_a.name
+FROM table_a
+LEFT JOIN table_b
+on table_a.id=table_b.id;
+
+
+
+
+/*
+#################  RIGHT JOIN  ###################
+
+definition :-The RIGHT JOIN keyword returns all records from the right table (table2),
+			and the matched records from the left table (table1). 
+            The result is NULL from the left side when there is no match.
+
+SELECT columns
+from table_1
+RIGHT JOIN 
+ON table_1.columns=table_2.columns
+*/
+
+
+
+SELECT table_a.id,table_a.name
+from table_a
+RIGHT JOIN table_b
+on table_a.name=table_b.name;
+
+
+
+/*
+#####################   FULL JOIN  ################################
+definition:- The FULL JOIN keyword returns all records when there is a match in either left (table1)
+			or right (table2) table records. FULL JOIN returns NULL for unmatched rows on either side.
+
+note :- FULL JOIN NOT WORKS IN MYSQL 
+# SYNTAX FOR FULL JOIN 
+		SELECT COLUMNS
+		FROM TABLE_1
+		FULL JOIN TABLE_2
+		ON TABLE_1.COLUMNS =TABLE_2.COLUMNS
+*/
+
+/*
+# example not works in mysql use other
+											SELECT table_a.id,table_a.name
+											FROM table_a
+											FULL JOIN table_b
+											ON table_a.id=table_b.id;
+
+*/
+
+
+
+
+/*
+###################### CROSS JOIN  ###########################
+definition:- The CROSS JOIN keyword returns the Cartesian product of the two tables. 
+			This means that it will return all possible combinations of rows from the two tables.
+# SYNTAX FOR CROSS JOIN
+			SELECT columns
+			FROM table_1
+			CROSS JOIN table_2
+			ON table_1.columns=table_2.columns;
+*/
+
+
+# example 
+
+SELECT table_a.name,table_b.name
+FROM table_a
+CROSS JOIN table_b
+ON table_a.name=table_b.name;
+
+
+/*
+############### SELF JOIN ####################
+defintion :- A SELF JOIN is a regular join but the table is joined with itself.
+
+SELECT table_1.column,table_2
+from table_1,table_2
+where condition
+
+*/
+
+# EXAMPLE 
+SELECT table_a.id,table_a.name,table_b.id,table_b.name
+FROM table_a,table_b
+where table_a.id=table_a.id;
