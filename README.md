@@ -1,4 +1,8 @@
 # SQL_TUTORIAL
+
+
+ note :1. # single line comments we may use # symbol
+       2./*mutiple line comments we may use */
   SQL Command Overview 
   
 1.Data Definition Language(DDL)
