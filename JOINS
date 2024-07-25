@@ -1,7 +1,5 @@
 /*
-
- 
-
+##################################### mysql_joins##################################
 MySQL supports several types of joins to combine records from two or more tables based on related columns. Here are the main types:
 
 INNER JOIN
@@ -12,6 +10,31 @@ note : not supports mysql
 CROSS JOIN
 SELF JOIN
 */
+#-- Create employees table
+CREATE TABLE employees (
+    employee_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    department_id INT,
+    manager_id INT
+);
+
+# Create departments table
+CREATE TABLE departments (
+    department_id INT AUTO_INCREMENT PRIMARY KEY,
+    department_name VARCHAR(255) NOT NULL
+);
+
+# Insert data into departments table
+INSERT INTO departments (department_name)
+VALUES ('HR'), ('Sales'), ('Engineering'), ('Marketing');
+
+#  Insert data into employees table
+INSERT INTO employees (name, department_id, manager_id)
+VALUES ('prasad', 1, NULL), 
+       ('hartik', 2, 1), 
+       ('akhil', 3, 2), 
+       ('sujith', NULL, 1), 
+       ('venkatesh', 4, 3);
 
 /*
 ################### INNER JOIN  #################################
@@ -24,10 +47,11 @@ Syntax:
 			INNER JOIN table2
 			ON table1.column = table2.column;
 */
-SELECT table_a.id, table_a.name
-FROM table_a
-INNER JOIN table_b
-ON table_a.id = table_b.id;
+SELECT employees.name, departments.department_name
+FROM employees
+INNER JOIN departments
+ON employees.department_id = departments.department_id;
+
 
 
 /*
@@ -48,12 +72,10 @@ definition :- The LEFT JOIN keyword returns all records from the left table (tab
 
  # example 
  
-SELECT  table_a.id,table_a.name
-FROM table_a
-LEFT JOIN table_b
-on table_a.id=table_b.id;
-
-
+SELECT employees.name, departments.department_name
+FROM employees
+LEFT JOIN departments
+ON employees.department_id = departments.department_id;
 
 
 /*
@@ -71,12 +93,10 @@ ON table_1.columns=table_2.columns
 
 
 
-SELECT table_a.id,table_a.name
-from table_a
-RIGHT JOIN table_b
-on table_a.name=table_b.name;
-
-
+SELECT employees.name, departments.department_name
+FROM employees
+RIGHT JOIN departments
+ON employees.department_id = departments.department_id;
 
 /*
 #####################   FULL JOIN  ################################
@@ -91,16 +111,14 @@ note :- FULL JOIN NOT WORKS IN MYSQL
 		ON TABLE_1.COLUMNS =TABLE_2.COLUMNS
 */
 
-/*
-# example not works in mysql use other
-											SELECT table_a.id,table_a.name
-											FROM table_a
-											FULL JOIN table_b
-											ON table_a.id=table_b.id;
-
-*/
-
-
+# we union then only works in mysql 
+SELECT employees.name, departments.department_name
+FROM employees
+LEFT JOIN departments ON employees.department_id = departments.department_id
+UNION
+SELECT employees.name, departments.department_name
+FROM employees
+RIGHT JOIN departments ON employees.department_id = departments.department_id;
 
 
 /*
@@ -116,11 +134,10 @@ definition:- The CROSS JOIN keyword returns the Cartesian product of the two tab
 
 
 # example 
+SELECT employees.name, departments.department_name
+FROM employees
+CROSS JOIN departments;
 
-SELECT table_a.name,table_b.name
-FROM table_a
-CROSS JOIN table_b
-ON table_a.name=table_b.name;
 
 
 /*
@@ -134,6 +151,8 @@ where condition
 */
 
 # EXAMPLE 
-SELECT table_a.id,table_a.name,table_b.id,table_b.name
-FROM table_a,table_b
-where table_a.id=table_a.id;
+SELECT a.employee_id, a.name, b.name as manager_name
+FROM employees a, employees b
+WHERE a.manager_id = b.employee_id;
+
+########### end of joins ##############################
