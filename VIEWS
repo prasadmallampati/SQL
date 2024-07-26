@@ -128,3 +128,22 @@ where employee_id=5;
 
 
 SELECT * FROM high_salary_emp;
+
+
+
+
+
+
+# insert 
+# insert into view_name (columns ) values(value1,....)
+
+INSERT INTO emp_dept (employee_id, first_name, last_name, salary)
+VALUES (6, 'Emily', 'Davis', 65000.00);
+
+
+
+#  Delete 
+# delete from view_name where condition
+DELETE FROM emp_dept
+WHERE employee_id = 2;
+
