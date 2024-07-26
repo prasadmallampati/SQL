@@ -138,7 +138,7 @@ SELECT * FROM high_salary_emp;
 # insert into view_name (columns ) values(value1,....)
 
 INSERT INTO emp_dept (employee_id, first_name, last_name, salary)
-VALUES (6, 'Emily', 'Davis', 65000.00);
+VALUES (6, 'hello', 'm', 65000.00);
 
 
 
